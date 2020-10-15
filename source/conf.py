@@ -19,8 +19,8 @@ import sphinx_rtd_theme
 # -- Project information -----------------------------------------------------
 
 project = 'notes'
-copyright = '2020, yuanliang'
-author = 'yuanliang'
+copyright = '2020, yunyi'
+author = 'yunyi'
 
 # The full version, including alpha/beta/rc tags
 release = '1.0'
@@ -56,3 +56,4 @@ html_theme = 'sphinx_rtd_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+master_doc = 'index'
