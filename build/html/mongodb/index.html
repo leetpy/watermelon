@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mongodb &mdash; notes 1.0 documentation</title>
+  <title>Mongodb &mdash; notes 1.0 documentation</title>
   
 
   
@@ -36,7 +36,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="redis" href="../redis/index.html" />
+    <link rel="next" title="基本操作" href="operator.html" />
     <link rel="prev" title="学习笔记" href="../index.html" />
     <link href="../_static/css/style.css" rel="stylesheet" type="text/css">
 
@@ -85,18 +85,20 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">mongodb</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">索引操作</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">增删改查</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">更新子文档</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id">通过id获取时间</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">分页</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Mongodb</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="operator.html">基本操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sharding.html">分片</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../redis/index.html">redis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../redis/index.html">Redis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mysql/index.html">mysql</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../os/index.html">操作系统</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../k8s/index.html">K8s</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../etcd/index.html">Etcd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mq/index.html">消息队列</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../shell/index.html">shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../go/index.html">Go</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../monitor/index.html">系统监控</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sphinx/index.html">sphinx</a></li>
 </ul>
 
@@ -144,7 +146,7 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>mongodb</li>
+      <li>Mongodb</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -164,67 +166,12 @@
            <div itemprop="articleBody">
             
   <div class="section" id="mongodb">
-<h1>mongodb<a class="headerlink" href="#mongodb" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>索引操作<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 创建索引</span>
-db.collection_name.ensureIndex<span class="o">({</span><span class="s2">&quot;key_name&quot;</span>:1<span class="o">})</span>
-
-<span class="c1"># 创建唯一索引</span>
-db.collection_name.ensureIndex<span class="o">({</span><span class="s2">&quot;key_name&quot;</span>:1<span class="o">}</span>,<span class="o">{</span><span class="s2">&quot;unique&quot;</span>:true<span class="o">})</span>
-
-<span class="c1"># 复合唯一索引</span>
-db.collection_name.ensureIndex<span class="o">({</span><span class="s1">&#39;key1&#39;</span>:1, <span class="s1">&#39;key1&#39;</span>:1<span class="o">})</span>
-
-<span class="c1"># 10s后自动删除</span>
-db.collection_name.ensureIndex<span class="o">({</span><span class="s2">&quot;key_name&quot;</span>:1<span class="o">}</span>,<span class="o">{</span>expireAfterSeconds:10<span class="o">})</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="id2">
-<h2>增删改查<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 查找</span>
-db.getCollection<span class="o">(</span><span class="s1">&#39;collection_name&#39;</span><span class="o">)</span>.find<span class="o">({</span><span class="s2">&quot;provison_state&quot;</span>: <span class="s2">&quot;success&quot;</span><span class="o">})</span>
-
-<span class="c1"># 使用正则表达式</span>
-db.getCollection<span class="o">(</span><span class="s1">&#39;collection_name&#39;</span><span class="o">)</span>.find<span class="o">({</span><span class="s2">&quot;date&quot;</span>: /2020-01-/<span class="o">})</span>
-
-<span class="c1"># range</span>
-db.getCollection<span class="o">(</span><span class="s1">&#39;collection_name&#39;</span><span class="o">)</span>.find<span class="o">({</span><span class="s2">&quot;date&quot;</span>: <span class="o">{</span><span class="s2">&quot;</span><span class="nv">$gt</span><span class="s2">&quot;</span>: ISODate<span class="o">(</span><span class="s2">&quot;2020-07-18T00:00:00.000Z&quot;</span><span class="o">)}})</span>
-
-<span class="c1"># 删除文档</span>
-db.getCollection<span class="o">(</span><span class="s1">&#39;collection_name&#39;</span><span class="o">)</span>.remove<span class="o">({</span><span class="s2">&quot;provison_state&quot;</span>: <span class="s2">&quot;success&quot;</span>, <span class="s2">&quot;industry&quot;</span>: null<span class="o">})</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="id3">
-<h2>更新子文档<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="id">
-<h2>通过id获取时间<a class="headerlink" href="#id" title="Permalink to this headline">¶</a></h2>
-<p>mongodb 的 Objectid 由12字节构成，分别是：</p>
-<ul class="simple">
-<li><p>a 4-byte value representing the seconds since the Unix epoch,</p></li>
-<li><p>a 3-byte machine identifier,</p></li>
-<li><p>a 2-byte process id, and</p></li>
-<li><p>a 3-byte counter, starting with a random value.</p></li>
+<h1>Mongodb<a class="headerlink" href="#mongodb" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="operator.html">基本操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sharding.html">分片</a></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ObjectId<span class="o">(</span><span class="s2">&quot;567a68517507b377a0a20903&quot;</span><span class="o">)</span>.getTimestamp<span class="o">()</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="id4">
-<h2>分页<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Page 1</span>
-db.getCollection<span class="o">(</span><span class="s1">&#39;collection_name&#39;</span><span class="o">)</span>.find<span class="o">({})</span>.limit<span class="o">(</span><span class="m">5</span><span class="o">)</span>
-
-<span class="c1"># Page 2</span>
-db.getCollection<span class="o">(</span><span class="s1">&#39;collection_name&#39;</span><span class="o">)</span>.find<span class="o">({})</span>.skip<span class="o">(</span><span class="m">5</span><span class="o">)</span>.limit<span class="o">(</span><span class="m">5</span><span class="o">)</span>
-
-<span class="c1"># Page 3</span>
-db.getCollection<span class="o">(</span><span class="s1">&#39;collection_name&#39;</span><span class="o">)</span>.find<span class="o">({})</span>.skip<span class="o">(</span><span class="m">10</span><span class="o">)</span>.limit<span class="o">(</span><span class="m">5</span><span class="o">)</span>
-</pre></div>
-</div>
 </div>
 </div>
 
@@ -236,7 +183,7 @@ db.getCollection<span class="o">(</span><span class="s1">&#39;collection_name&#3
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../redis/index.html" class="btn btn-neutral float-right" title="redis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="operator.html" class="btn btn-neutral float-right" title="基本操作" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../index.html" class="btn btn-neutral float-left" title="学习笔记" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

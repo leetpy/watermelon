@@ -5,3 +5,4 @@ Etcd
    :maxdepth: 2
 
    grammar
+   cluster

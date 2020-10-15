@@ -6,3 +6,4 @@ shell
 
    sed
    color
+   os

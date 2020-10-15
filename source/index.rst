@@ -11,9 +11,17 @@
 
    mongodb/index
    redis/index
+   mysql/index
+   elasticsearch/index
+   os/index
    k8s/index
    etcd/index
+   mq/index
    shell/index
+   go/index
+   data_structure/index
+   openresty/index
+   monitor/index
    sphinx/index
 
 
