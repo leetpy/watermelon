@@ -6,4 +6,5 @@ K8s
    :maxdepth: 2
 
    deployment
+   harbor
 
