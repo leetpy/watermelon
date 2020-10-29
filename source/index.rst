@@ -22,6 +22,8 @@
    data_structure/index
    openresty/index
    monitor/index
+   architecture/index
+   distributed_system/index
    sphinx/index
 
 

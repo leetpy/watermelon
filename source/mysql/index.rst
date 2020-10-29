@@ -7,4 +7,5 @@ mysql
    operator
    engine
    indices
+   transaction
    lock
