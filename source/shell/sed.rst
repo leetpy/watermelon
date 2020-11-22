@@ -16,10 +16,10 @@ sed
 
     # 匹配行到最后一行
     sed -n '/Installed Packages/,$'p file.txt
-    
+
     # 前两行
     sed -n '1,2'p file.txt
-    
+
     # 去掉第一行
     sed -n '2,$'p file.txt
 

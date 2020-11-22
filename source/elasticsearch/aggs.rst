@@ -16,6 +16,32 @@
     }
 
 
+聚合排序
+
+.. code-block:: bash
+
+   {
+      "query": {},
+      "aggs": {
+          "frame_id": {
+              "terms": {
+                  "field": "frame_id",
+                  "size": 10,
+                  "order": {
+                      "relation_id": "desc"
+                  }
+              },
+              "aggs": {
+                  "relation_id": {
+                      "cardinality": {
+                          "field": "relation_id"
+                      }
+                  }
+              }
+          }
+      }
+   }
+
 聚合分区
 --------
 

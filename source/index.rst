@@ -12,6 +12,7 @@
    mongodb/index
    redis/index
    mysql/index
+   hugegraph/index
    elasticsearch/index
    os/index
    k8s/index

@@ -6,5 +6,7 @@ K8s
    :maxdepth: 2
 
    deployment
+   node
+   authentication
    harbor
 

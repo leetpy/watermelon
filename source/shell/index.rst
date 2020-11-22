@@ -5,5 +5,6 @@ shell
    :maxdepth: 2
 
    sed
+   awk
    color
    os
