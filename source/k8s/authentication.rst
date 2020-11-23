@@ -1,7 +1,7 @@
 用户认证
 ========
 
-生成登录配置文件
+生成 dashboard 登录配置文件
 
 .. code-block:: bash
 
