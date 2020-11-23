@@ -5,6 +5,7 @@
 
 .. code-block:: bash
 
+    # 设置登录地址
     kubectl config set-cluster kubernetes --server=<master ip>:6443 --kubeconfig=<filename>
 
     # 这里的scret参数需要替换成上面获取到的登陆的token值
