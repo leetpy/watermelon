@@ -13,11 +13,9 @@
    data_structure/index
    network/index
    database/index
+   programming/index
    cloud_computing/index
    mq/index
-   shell/index
-   go/index
-   python/index
    openresty/index
    monitor/index
    cicd/index
