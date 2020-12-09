@@ -9,20 +9,15 @@
 .. toctree::
    :maxdepth: 2
 
-   mongodb/index
-   mysql/index
-   redis/index
-   hugegraph/index
-   elasticsearch/index
    os/index
-   k8s/index
-   helm/index
-   etcd/index
+   data_structure/index
+   network/index
+   database/index
+   cloud_computing/index
    mq/index
    shell/index
    go/index
    python/index
-   data_structure/index
    openresty/index
    monitor/index
    cicd/index
