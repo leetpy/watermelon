@@ -21,6 +21,7 @@
    mq/index
    shell/index
    go/index
+   python/index
    data_structure/index
    openresty/index
    monitor/index
