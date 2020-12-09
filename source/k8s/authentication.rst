@@ -5,6 +5,9 @@
 
 .. code-block:: bash
 
+    # 查看 token
+    kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep kubernetes-dashboard-admin-token | awk '{print $1}')
+
     # 设置登录地址
     kubectl config set-cluster kubernetes --server=<master ip>:6443 --kubeconfig=<filename>
 

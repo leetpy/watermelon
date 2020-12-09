@@ -11,6 +11,9 @@
     # 删除节点
     kubectl delete node
 
+    # 生成加入集群命令 （master 上执行）
+    kubeadm token create --print-join-command
+
 
 label 操作
 

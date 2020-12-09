@@ -6,7 +6,10 @@ K8s
    :maxdepth: 2
 
    deployment
+   config_map
+   volume
    node
    authentication
    harbor
+   config
 

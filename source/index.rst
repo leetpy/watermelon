@@ -10,12 +10,13 @@
    :maxdepth: 2
 
    mongodb/index
-   redis/index
    mysql/index
+   redis/index
    hugegraph/index
    elasticsearch/index
    os/index
    k8s/index
+   helm/index
    etcd/index
    mq/index
    shell/index
@@ -23,6 +24,7 @@
    data_structure/index
    openresty/index
    monitor/index
+   cicd/index
    architecture/index
    distributed_system/index
    sphinx/index

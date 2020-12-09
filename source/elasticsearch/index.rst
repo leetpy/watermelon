@@ -5,6 +5,7 @@ Elasticsearch
    :maxdepth: 2
 
    base
+   search
    aggs
    shards
    reindex
