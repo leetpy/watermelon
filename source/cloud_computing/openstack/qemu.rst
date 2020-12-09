@@ -9,6 +9,8 @@ qemu 官方的定义是: `QEMU is a generic and open source machine emulator and
 其实是和qemu模拟的硬件交互。qemu会将指令翻译给host执行。
 所有指令通过qemu翻译后执行性能会比较差。qemu的架构如下图所示：
 
+.. image:: images/qemu.jpg
+
 什么是KVM
 ----------
 
@@ -24,6 +26,7 @@ guest os的CPU指令不用再经过QEMU来转译便可直接运行，
 大大提高了运行速度。但KVM的kvm.ko本身只提供了CPU和内存的虚拟化，
 所以它必须结合QEMU才能构成一个完整的虚拟化技术，也就是下面要介绍的技术。
 
+
 什么是QEMU-KVM
 ---------------
 
@@ -32,6 +35,7 @@ KVM负责cpu虚拟化+内存虚拟化，实现了cpu和内存的虚拟化，
 KVM的开发者选择了比较成熟的开源虚拟化软件QEMU来作为这个工具，
 QEMU模拟IO设备（网卡，磁盘等），对其进行了修改，最后形成了QEMU-KVM。
 
+.. image:: images/qemu-kvm.png
 
 镜像基本操作
 --------------
