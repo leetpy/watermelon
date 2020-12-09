@@ -6,3 +6,4 @@
 
    k8s/index
    helm/index
+   openstack/index
