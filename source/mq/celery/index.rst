@@ -5,5 +5,6 @@ celery
    :maxdepth: 2
 
    configuration
+   task
 
 

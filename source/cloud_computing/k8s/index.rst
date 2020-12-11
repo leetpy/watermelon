@@ -10,6 +10,7 @@ K8s
    volume
    node
    authentication
+   dns
    harbor
    config
 
