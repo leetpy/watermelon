@@ -14,3 +14,7 @@
       findOptions := options.Find()
       findOptions.SetLimit(2)
       cur, err := collection.Find(context.TODO(), bson.D{})
+
+2. interface 设计：
+
+   如果返回的是一个 interface, 想看具体实现代码时比较麻烦；

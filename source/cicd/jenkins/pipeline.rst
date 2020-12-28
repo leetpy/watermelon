@@ -44,3 +44,13 @@ Pipeline
              }
          }
      }
+
+- 控制 job 每次只有一个在运行
+
+  .. code-block:: groovy
+
+     pipeline {
+         options {
+             disableConcurrentBuilds()
+         }
+     }
