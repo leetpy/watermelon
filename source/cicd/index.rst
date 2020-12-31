@@ -5,3 +5,4 @@ CI/CD
    :maxdepth: 2
 
    jenkins/index
+   ansible/index

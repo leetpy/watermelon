@@ -6,4 +6,5 @@ Etcd
 
    about
    grammar
+   auth
    cluster
