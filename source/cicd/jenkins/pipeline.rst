@@ -62,14 +62,18 @@ Pipeline
      pipeline {
          agent any
          parameters {
-     	     string(name: 'IMG_NAME', defaultValue: 'default value', description: 'parameters description')
+             string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+             text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
+             booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
+             choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+             password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
      	 }
 
          stages {
              stage("parameters test") {
                  steps {
                      sh """
-                         echo "${params.IMG_NAME}"
+                         echo "${params.PERSON}"
                      """
                      }
                  }
