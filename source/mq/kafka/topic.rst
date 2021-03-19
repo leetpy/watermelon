@@ -17,3 +17,6 @@ topic 相关操作
 
    # 增加分区数量 (分区只能增加不能减少)
    ./kafka-topics.sh --zookeeper localhost:2181 --alter --topic test --partitions 4
+
+   # 删除 topic
+   ./kafka-topics.sh --zookeeper localhost:2181 --delete --topic test

@@ -6,6 +6,7 @@ Go
    :maxdepth: 2
 
    lock
+   time
    context
    string
    json

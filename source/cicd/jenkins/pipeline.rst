@@ -54,3 +54,25 @@ Pipeline
              disableConcurrentBuilds()
          }
      }
+
+- 构建参数
+
+  .. code-block:: groovy
+
+     pipeline {
+         agent any
+         parameters {
+     	     string(name: 'IMG_NAME', defaultValue: 'default value', description: 'parameters description')
+     	 }
+
+         stages {
+             stage("parameters test") {
+                 steps {
+                     sh """
+                         echo "${params.IMG_NAME}"
+                     """
+                     }
+                 }
+             }
+         }
+     }

@@ -7,3 +7,5 @@
    k8s/index
    helm/index
    openstack/index
+   virtualbox/index
+   switch/index

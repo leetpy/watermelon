@@ -6,4 +6,7 @@ Openstack
 
    qemu
    ovs
+   ovn
    virsh
+   cli
+   neutron

@@ -1,0 +1,53 @@
+S5130
+=======
+
+配置 vlan
+
+.. code-block:: bash
+
+   system-view
+   
+   # 创建 vlan
+   vlan 2
+   
+   #加入端口
+   port GE1/0/1
+   quit
+   
+   # 配置 vlan 地址
+   interface vlan-interface 2
+   ip address 10.1.2.2 24
+   quite
+   
+   
+   # trunk 模式配置
+   interface GE1/0/4
+   port link-type trunk
+   # 支持 vlan2, vlan3, vlan4, vlan2000
+   port trunk permit vlan 2 to 4 2000
+
+
+vlan 删除端口
+
+.. code-block:: bash
+
+   interface GE1/0/1
+   no vlan 2
+
+
+查看某个 vlan 信息
+
+.. code-block:: console
+
+   [root]show vlan 2
+    VLAN ID: 2
+    VLAN type: Static
+    Route interface: Configured
+    IPv4 address: 10.95.85.100
+    IPv4 subnet mask: 255.255.255.0
+    Description: VLAN 0002
+    Name: VLAN 0002
+    Tagged ports:
+       Bridge-Aggregation48
+    Untagged ports:
+       GigabitEthernet1/0/7

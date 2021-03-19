@@ -9,3 +9,4 @@ MySQL
    indices
    transaction
    lock
+   connection

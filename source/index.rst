@@ -13,6 +13,7 @@
    data_structure/index
    network/index
    database/index
+   algorithm/index
    programming/index
    cloud_computing/index
    mq/index

@@ -5,3 +5,4 @@ Jenkins
    :maxdepth: 2
 
    pipeline
+   gitlab
