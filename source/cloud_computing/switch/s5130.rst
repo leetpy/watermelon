@@ -6,20 +6,20 @@ S5130
 .. code-block:: bash
 
    system-view
-   
+
    # 创建 vlan
    vlan 2
-   
+
    #加入端口
    port GE1/0/1
    quit
-   
+
    # 配置 vlan 地址
    interface vlan-interface 2
    ip address 10.1.2.2 24
    quite
-   
-   
+
+
    # trunk 模式配置
    interface GE1/0/4
    port link-type trunk
