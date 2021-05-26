@@ -1,6 +1,15 @@
 常用操作
 ========
 
+.. code-block:: sql
+
+   -- mysql 8.0 以上八版本
+   CREATE DATABASE mydatabase CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+
+   -- 低版本
+   CREATE DATABASE mydatabase CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+
 Host授权
 ---------
 
