@@ -9,3 +9,4 @@
    openstack/index
    virtualbox/index
    switch/index
+   docker/index

@@ -6,3 +6,6 @@ CI/CD
 
    jenkins/index
    ansible/index
+   gitlab
+   prometheus/index
+   grafana/index

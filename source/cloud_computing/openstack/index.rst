@@ -9,4 +9,6 @@ Openstack
    ovn
    virsh
    cli
-   neutron
+   neutron/index
+   swift/index
+   cloud-base

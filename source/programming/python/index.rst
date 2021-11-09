@@ -6,3 +6,4 @@ Python
 
    gc
    pyenv
+   pytest/index

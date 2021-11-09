@@ -1,15 +1,41 @@
 Pipeline
 =========
 
+完整的文档参考： https://www.jenkins.io/zh/doc/
+
 - 触发其它 job
 
   .. code-block:: groovy
 
-      stage("step1") {
+     // 等待
+     stage("step1") {
+        steps {
+             build job: 'job1', parameters: []
+         }
+     }
+
+    // 加参数，不等待
+    stage("step1") {
           steps {
-              build job: 'aether-cleaner-update', parameters: []
+              build job: 'job1', parameters: [string(name: 'Name', value: 'Baz2')], wait: false
           }
-      }
+     }
+
+     // 串行触发多个 job
+     stage("step1") {
+          steps {
+              build job: 'job1', parameters: []
+              build job: 'job2', parameters: []
+          }
+     }
+
+     // 并行触发多个 job，并等待完成
+     stage('step1') {
+        def jobs = [:]
+        jobs[0] = {build job: 'job1', parameters: [string(name: 'Name', value: param)], quietPeriod: 2}
+        jobs[1] = {build job: 'job2', parameters: [string(name: 'Name', value: param)], quietPeriod: 2}
+        parallel jobs
+     }
 
 - 指定分支和文件改变条件
 
@@ -78,5 +104,82 @@ Pipeline
                      }
                  }
              }
+         }
+     }
+
+- 指定 agent
+
+  .. code-block:: groovy
+
+     // 指定所有 agent
+     pipeline {
+        agent any
+     }
+
+     // 固定 agent
+     pipeline {
+        agent {
+            label "slave"
+        }
+     }
+
+- stage 失败了继续执行
+
+  .. code-block:: groovy
+
+     pipeline {
+        agent any
+        stages {
+            stage('1') {
+                steps {
+                    sh 'exit 0'
+                }
+            }
+            stage('2') {
+                steps {
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        sh "exit 1"
+                    }
+                }
+            }
+            stage('3') {
+                steps {
+                    sh 'exit 0'
+                }
+            }
+        }
+     }
+
+- 按条件触发
+
+  .. code-block:: groovy
+
+     // 根据分支和文件修改来控制
+     stage("step1") {
+         when {
+             anyOf {
+                 environment name: 'GIT_BRANCH', value: 'origin/master'
+                 changeset 'file_a'
+                 changeset 'file_b'
+             }
+         }
+     }
+
+- 发布单元测试结果
+
+  .. code-block:: groovy
+
+     // 这里使用的是 html publish 插件
+     // 需要在 jenkins 上执行下： System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
+     // 否则 chrome 浏览器会禁用 css 和 js
+     post {
+         always {
+             publishHTML (target : [allowMissing: false,
+                 alwaysLinkToLastBuild: true,
+                 keepAll: true,
+                 reportDir: 'htmlcov',
+                 reportFiles: 'index.html',
+                 reportName: 'Code Coverage',
+                 reportTitles: 'Code Coverage'])
          }
      }

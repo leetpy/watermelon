@@ -1,8 +1,7 @@
-Jenkins
+项目管理
 ========
 
 .. toctree::
    :maxdepth: 2
 
-   pipeline
-   plugins/index
+   jira/index

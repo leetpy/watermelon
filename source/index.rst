@@ -15,6 +15,7 @@
    database/index
    algorithm/index
    programming/index
+   frontent/index
    cloud_computing/index
    mq/index
    openresty/index
@@ -22,7 +23,10 @@
    cicd/index
    architecture/index
    distributed_system/index
+   pm/index
    sphinx/index
+   tools/index
+   interview/index
 
 
 

@@ -5,3 +5,4 @@ OpenResty
    :maxdepth: 2
 
    nginx/index
+   lua

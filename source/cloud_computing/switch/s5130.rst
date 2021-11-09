@@ -10,6 +10,9 @@ S5130
    # 创建 vlan
    vlan 2
 
+   # 批量创建 vlan
+   vlan 100 to 200
+
    #加入端口
    port GE1/0/1
    quit

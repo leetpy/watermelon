@@ -1,19 +1,8 @@
-Cli
-===
+OpenStack 命令行速查表
+=========================
 
-集群相关
 
-.. code-block:: console
-
-   $ openstack availability zone list
-   +-----------+-------------+
-   | Zone Name | Zone Status |
-   +-----------+-------------+
-   | internal  | available   |
-   | nova      | available   |
-   +-----------+-------------+
-
-认证
+认证(keystone)
 
 .. code-block:: bash
 
@@ -23,15 +12,21 @@ Cli
    # 列出认证服务目录
    openstack catalog list
 
-实例
+   # AZ
+   openstack availability zone list
+
+计算(nova)
 
 .. code-block:: bash
 
-   # 列出实例，核实实例状态
-   openstack server list
-
    # 列出规格类型
    openstack flavor list
+
+   # 创建 flavor
+   openstack flavor create --ram 512 --disk 1 --vcpus 1 m1.tiny
+
+   # 列出实例，核实实例状态
+   openstack server list
 
    # 删除实例
    openstack server delete bad544b4-46df-4b0a-9067-a1c680b687c9
@@ -42,37 +37,58 @@ Cli
    # 查看云主机的控制台日志
    openstack console log show MyFirstInstance
 
-网络
+   # 指定 user-data
+   openstack server create --user-data userdata.txt --image cirros-qcow2 --flavor m1.tiny MyUserdataInstance2
 
-.. code-block:: console
+网络(neutron)
 
-   $ openstack network list
-   +--------------------------------------+---------+--------------------------------------+
-   | ID                                   | Name    | Subnets                              |
-   +--------------------------------------+---------+--------------------------------------+
-   | 80b79915-3ae5-484b-8b9f-32429dde3cfb | private | c34d7720-2bd5-42bf-93f6-c88f3b57ceb8 |
-   | e9e3b8d8-9ef1-4438-814e-482d2bceffe9 | public  | 57f6f7a9-ee60-4368-8416-8b61346a9d7f |
-   +--------------------------------------+---------+--------------------------------------+
+.. code-block:: bash
 
-镜像
+   # 网络列表
+   openstack network list
 
-.. code-block:: console
+   # 创建安全组
+   neutron security-group-rule-create --direction ingress --ethertype IPv4 my_sg
 
-   $ openstack image list
-   +--------------------------------------+--------------+--------+
-   | ID                                   | Name         | Status |
-   +--------------------------------------+--------------+--------+
-   | d06fd808-81bb-4e38-aea3-601a20cb96bd | cirros       | active |
-   | 2318e35b-72f2-444d-98a8-24f586aab347 | cirros-0.3.1 | active |
-   +--------------------------------------+--------------+--------+
+   # 创建 VLAN 网络
+   neutron net-create net1 --shared --provider:physical_network physnet1 --provider:network_type vlan --provider:segmentation_id 16
 
-卷
 
-.. code-block:: console
+镜像(glance)
 
-   $ openstack volume list
-   +--------------------------------------+------+-----------+------+-------------+
-   | ID                                   | Name | Status    | Size | Attached to |
-   +--------------------------------------+------+-----------+------+-------------+
-   | 6b378e55-ab2b-4ccf-a2d2-47b3c5c212f1 |      | available |    1 |             |
-   +--------------------------------------+------+-----------+------+-------------+
+.. code-block:: bash
+
+   # 镜像列表
+   openstack image list
+
+   # 显示进度
+   glance image-create --name windows7 --visibility public --disk-format qcow2 --container-format bare --file win7.qcow2 --progress
+
+   # 设置 VGA
+   glance image-create --name centos8 --visibility public --disk-format qcow2 --container-format bare --file centos8.qcow --property hw_video_model=vga --progress
+
+卷(cinder)
+
+.. code-block:: bash
+
+   # 卷列表
+   openstack volume list
+
+
+对象存储(swift)
+
+.. code-block:: bash
+
+   # 列出容器
+   swift list
+
+   # 展示账户，容器以及对象的信息
+   swift stat CONTAINER
+
+
+swift-ring-builder
+
+.. code-block:: bash
+
+   # 必须到 ring 对应的目录下执行才行
+   cd /etc/swift
