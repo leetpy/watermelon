@@ -61,6 +61,6 @@ Prometheus 内置不少函数，方便查询以及数据格式化，
 
 
 
-.. code-block:: sql
+.. code-block:: bash
 
    sum(rate(http_server_requests_seconds_count{job="presell-pro", uri="/helloWorld"}[5m])) by (uri)
