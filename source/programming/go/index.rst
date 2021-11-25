@@ -11,7 +11,9 @@ Go
    type
    interface
    slice
+   goroutine
    io
+   http
    lock
    time
    context

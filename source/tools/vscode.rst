@@ -11,6 +11,11 @@ VSCode
    # 打开文件面板
    ⌘P
 
+   # 隐藏目录
+   ⌘B
+
+   # workbench.action.toggleActivityBarVisibility
+
 推荐插件
 
 #. Font Switcher
